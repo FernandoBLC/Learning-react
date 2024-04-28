@@ -1,37 +1,44 @@
-import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import {Button} from '@mui/material';
+import {useState, SyntheticEvent} from 'react'
+import {Tab, Tabs} from '@mui/material'
+
+// Contente Tabs
+import ViteScreen from './app/main/apps/vitescreen/ViteScreen.tsx';
+import TodosApp from './app/main/apps/learnredux/TodosApp.tsx';
 
 function App() {
-    const [count, setCount] = useState(0);
+    const [tabValue, setTabValue] = useState(0);
+
+    const handleChangeTab = (event: SyntheticEvent, newValue: number) => {
+        setTabValue(newValue);
+    };
 
     return (
-        <>
+        <div className="w-full h-auto">
+            <Tabs
+                value={tabValue}
+                onChange={handleChangeTab}
+            >
+                <Tab
+                    value={0}
+                    label="Vite Screen"
+                />
+                <Tab
+                    value={1}
+                    label="Test Todo App"
+                />
+            </Tabs>
             <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo"/>
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo"/>
-                </a>
+                <div className={tabValue !== 0 ? 'hidden' : ''}>
+                    {tabValue !== 0 ? '' : <ViteScreen/>}
+                </div>
+                <div className={tabValue !== 1 ? 'hidden' : ''}>
+                    {tabValue !== 1 ? '' : <TodosApp/>}
+                </div>
             </div>
-            <h1>Vite + React</h1>
-            <div className="card">
-                <Button onClick={() => setCount((count) => count + 1)} variant="contained">count is {count}</Button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
-                <h1 className="text-3xl font-bold underline">
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </h1>
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
+        </div>
     )
 }
 
 export default App
+
+
