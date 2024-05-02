@@ -11,14 +11,13 @@ import {
 
 import CommentIcon from '@mui/icons-material/Comment';
 
-type typeObjTask = {
-    idTask: number;
-    title: string;
-    description: string;
-}
+import TodosAppForm from './TodosAppForm.tsx';
+
+import {TodoTasks, TaskData} from './store/todoSlice.ts';
+
 
 function TodosApp() {
-    const auxTodo: typeObjTask[] = [
+    const auxTodo: TodoTasks = [
         {idTask: 1, title: 'Tarea 1', description: 'Esta es la tarea 1'},
         {idTask: 2, title: 'Tarea 2', description: 'Esta es la tarea 2'},
         {idTask: 3, title: 'Tarea 3', description: 'Esta es la tarea 3'},
@@ -41,11 +40,12 @@ function TodosApp() {
     };
 
     return (
-        <div className="w-full h-auto">
-            <List sx={{width: '30%'}}>
+        <div className="flex flex-col justify-center w-full">
+            <TodosAppForm/>
+
+            <List sx={{width: '50%'}}>
                 {
-                    auxTodo.map((element: typeObjTask) => {
-                        console.log('Este es el contenido de element: ', element);
+                    auxTodo.map((element: TaskData) => {
                         return <ListItem
                             key={element.idTask}
                             secondaryAction={
@@ -75,6 +75,7 @@ function TodosApp() {
                     })
                 }
             </List>
+
         </div>
     )
 }

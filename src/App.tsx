@@ -27,11 +27,11 @@ function App() {
                     label="Test Todo App"
                 />
             </Tabs>
-            <div>
+            <div className="flex justify-center w-full">
                 <div className={tabValue !== 0 ? 'hidden' : ''}>
                     {tabValue !== 0 ? '' : <ViteScreen/>}
                 </div>
-                <div className={tabValue !== 1 ? 'hidden' : ''}>
+                <div className={tabValue !== 1 ? 'hidden' : 'flex justify-center w-full'}>
                     {tabValue !== 1 ? '' : <TodosApp/>}
                 </div>
             </div>
